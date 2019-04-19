@@ -23,3 +23,20 @@ Put the following content
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="b8:27:eb:ec:7e:88", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"
 
 ```
+
+
+add modules
+```
+sudo nano /etc/modules
+```
+
+The contents are:
+```
+uinput
+i2c-bcm2708
+i2c-dev
+r8712u
+brcmfmac
+brcmutil
+
+```
