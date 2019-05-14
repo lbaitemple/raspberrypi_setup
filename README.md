@@ -1,12 +1,10 @@
 # raspberrypi_setup
-1. download an image at
+1. Download newest image at
 https://downloads.ubiquityrobotics.com/pi.html
 
 
-2. vnc on MAC
+2. vnc app on MAC/ssh on linux//putty on Win
 https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Mac
-
-
 
 a. create wlan
 ```
@@ -44,6 +42,30 @@ brcmutil
 
 Add QT
 ```
-wget http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run
-
+wget -c http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run
+sudo raspi-update -y && sudo reboot
 ```
+Login user:ubuntu pw:ubuntu
+
+# codeblock
+    Press: ctl + alt + t
+    Copy text: ctl+shift+c
+    Paste text: print ctl+shift+v
+
+    sudo apt update && sudo apt upgrade 
+
+    run: 
+    sudo apt install python-opencv python-pip python3-pip python-numpy \
+    python-dev python3-dev gfortran \
+    build-essential bison flex ncurses5 git wget curl
+    
+    run: git clone https://github.com/3keepmovingforward3/tf-1.1.0-cp35.git
+    
+    run: git checkout master && cd tf-1.1.0-cp35
+    run: pip3 install --user -r requirements.txt
+    
+    
+    
+
+    
+    run
