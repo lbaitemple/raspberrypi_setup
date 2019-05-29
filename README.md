@@ -42,46 +42,60 @@ brcmutil
 The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want kernel architecture built for the ARCH=arm64 and CROSS_COMPILE=aarch64;
 
 Assumed cross-compile environment is AMD64 Ubuntu Linux
-	  **Binutils**
-a. `sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`
-b .`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2`
-c. `tar xvf binutils-2.29.1.tar.bz2`
-d. `mkdir binutils-obj && cd binutils-obj`
-e. `../binutils-2.29.1/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls`
- f. `make -j4`
- g. `sudo make install`
- h. `export PATH=$PATH:/opt/aarch64/bin/`
-	 **GCC**
-a. `wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`
-b. `tar xvf gcc-6.4.0.tar.xz`
-c. `mkdir gcc-out && cd gcc-out`
-d. `../gcc-6.4.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
+	  **Binutils**  
+`sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`  
+`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2`  
+`tar xvf binutils-2.29.1.tar.bz2`  
+`mkdir binutils-obj && cd binutils-obj`  
+`../binutils-2.29.1/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls`  
+`make -j4`  
+`sudo make install`  
+`export PATH=$PATH:/opt/aarch64/bin/`  
+	 **GCC**  
+`wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`  
+`tar xvf gcc-6.4.0.tar.xz`  
+`mkdir gcc-out && cd gcc-out`  
+`../gcc-6.4.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float \
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic \
- --enable-languages=c`
- e. `make all-gcc -j4`
- f. `sudo make install-gcc`
+ --enable-languages=c`  
+ `make all-gcc -j4`  
+ `sudo make install-gcc`  
  
-We want to use realtime kernel for latency control statistics
+We want to use realtime kernel for latency control statistics  
 
-    git clone --depth=1 -b rpi-4.14.y-rt https://github.com/raspberrypi/linux.git
-    mkdir kernel-out
-    cd linux
-    make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  bcmrpi3_defconfig
+    git clone --depth=1 -b rpi-4.14.y-rt https://github.com/raspberrypi/linux.git  
+    mkdir kernel-out  
+    cd linux  
+    make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  bcmrpi3_defconfig  
 Now we have the default bcmrpi3_defconfig kernel configuration, but it is good to check that we're using RT as the kernel setting. Use text editor to confirm compiler setting for real-time rt kernel build, or use menuconfig.
 
-    make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
+    make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig  
 
-Start compile:
+Start compile:  
 
-    make -j4 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+    make -j4 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  
 
-Add QT
+Add QT  
 ```
-wget -c http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run
-sudo raspi-update -y && sudo reboot
+wget -c http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run  
+sudo raspi-update -y && sudo reboot  
 ```
-Login user:ubuntu pw:ubuntu
+Login user:ubuntu pw:ubuntu  
+
+**ZRAM**  
+Zram, formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
+
+A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
+
+`sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
+`sudo chmod +x /usr/bin/zram.sh`  
+`sudo nano /etc/rc.local`  
+Find the line that says "exit 0" and add one line above it
+`/usr/bin/zram.sh`
+Press control+x  
+Press enter
+Reboot
 
 # codeblock
     Press: ctl + alt + t
