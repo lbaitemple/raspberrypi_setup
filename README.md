@@ -41,26 +41,26 @@ brcmutil
 # Kernel Build
 The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want kernel architecture built for the ARCH=arm64 and CROSS_COMPILE=aarch64;
 
-Assumed cross-compile environment is AMD64 Ubuntu Linux
-	  **Binutils**
-a. `sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`
-b .`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2`
-c. `tar xvf binutils-2.29.1.tar.bz2`
-d. `mkdir binutils-obj && cd binutils-obj`
-e. `../binutils-2.29.1/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls`
- f. `make -j4`
- g. `sudo make install`
- h. `export PATH=$PATH:/opt/aarch64/bin/`
-	 **GCC**
-a. `wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`
-b. `tar xvf gcc-6.4.0.tar.xz`
-c. `mkdir gcc-out && cd gcc-out`
-d. `../gcc-6.4.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
+Assumed cross-compile environment is AMD64 Ubuntu Linux  
+	  **Binutils**  
+`sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`  
+`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2`  
+`tar xvf binutils-2.29.1.tar.bz2`  
+`mkdir binutils-obj && cd binutils-obj`  
+`../binutils-2.29.1/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls`  
+`make -j4`  
+`sudo make install`  
+`export PATH=$PATH:/opt/aarch64/bin/`  
+	 **GCC**  
+`wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`  
+`tar xvf gcc-6.4.0.tar.xz`  
+`mkdir gcc-out && cd gcc-out`  
+`../gcc-6.4.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float \
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic \
- --enable-languages=c`
- e. `make all-gcc -j4`
- f. `sudo make install-gcc`
+ --enable-languages=c`  
+ `make all-gcc -j4`  
+ `sudo make install-gcc`  
  
 We want to use realtime kernel for latency control statistics
 
