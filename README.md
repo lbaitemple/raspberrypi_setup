@@ -52,14 +52,14 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
 `sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
-`wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`  
-`tar xvf gcc-6.4.0.tar.xz`  
+`wget -c http://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
+`tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
-`../gcc-6.4.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
+`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float \
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic \
  --enable-languages=c`  
- `make all-gcc -j4`  
+ `make all-gcc -j6`  
  `sudo make install-gcc`  
  
 We want to use realtime kernel for latency control statistics
