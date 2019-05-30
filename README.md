@@ -79,29 +79,34 @@ Start compile:
 Add QT
 ```
 wget -c http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run
-sudo raspi-update -y && sudo reboot
 ```
 Login user:ubuntu pw:ubuntu
 
 # codeblock
-    Press: ctl + alt + t
+    Open Terminal: ctl + alt + t
     Copy text: ctl+shift+c
     Paste text: print ctl+shift+v
 
+    
+    Fixes Repository Public Key Error
+    sudo sh -c 'echo "deb https://packages.ubiquityrobotics.com/ubuntu/ubiquity xenial main" > /etc/apt/sources.list.d/ubiquity-latest.list'
+    sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C3032ED8
+
     sudo apt update && sudo apt upgrade 
-
-    run: 
-    sudo apt install python-opencv python-pip python3-pip python-numpy \
-    python-dev python3-dev gfortran \
-    build-essential bison flex ncurses5 git wget curl
     
-    run: git clone https://github.com/3keepmovingforward3/tf-1.1.0-cp35.git
+    Updates to newest stable kernel
+    sudo rpi-update (select yes to update)
+    sudo reboot
     
-    run: git checkout master && cd tf-1.1.0-cp35
-    run: pip3 install --user -r requirements.txt
+    Open Terminal
     
+    Optimized Memcpy/Memset:
+    wget https://github.copm/bavison/arm-mem/archive/master.tar.gz
+    tar xvf master.tar.gz && cd arm-mem-master
+    make -j4
+    sudo cp -v libarmem-v7l.so /usr/lib
+    sudo su
+    echo echo "/usr/lib/libarmmem-v7l.so" >> /etc/ld.so.preload
+    exit
     
-    
-
-    
-    run
+    sudo apt install python-dev python3-dev gfortran build-essential bison flex ncurses5 git wget curl
