@@ -44,12 +44,12 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 Assumed cross-compile environment is AMD64 Ubuntu Linux  
 	  **Binutils**  
 `sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`  
-`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2`  
-`tar xvf binutils-2.29.1.tar.bz2`  
+`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
+`tar xvf binutils-2.32.tar.bz2`  
 `mkdir binutils-obj && cd binutils-obj`  
-`../binutils-2.29.1/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls`  
-`make -j4`  
-`sudo make install`  
+`../binutils-2.32/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls --enable-lto`  
+`make -j6 CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model"`  
+`sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
 `wget https://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.xz`  
