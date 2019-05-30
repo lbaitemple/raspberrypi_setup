@@ -52,7 +52,7 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
 `sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
-`wget -c http://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
+`wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 `tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
 `../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
