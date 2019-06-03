@@ -109,4 +109,15 @@ Login user:ubuntu pw:ubuntu
     echo echo "/usr/lib/libarmmem-v7l.so" >> /etc/ld.so.preload
     exit
     
-    sudo apt install python-dev python3-dev gfortran build-essential bison flex ncurses5 git wget curl
+Zram, formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
+
+A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
+
+`sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
+`sudo chmod +x /usr/bin/zram.sh`  
+`sudo nano /etc/rc.local`  
+Find the line that says "exit 0" and add one line above it
+`/usr/bin/zram.sh`
+Press control+x  
+Press enter
+Reboot
