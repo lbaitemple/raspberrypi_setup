@@ -43,6 +43,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 
 Assumed cross-compile environment is AMD64 Ubuntu Linux  
 	  **Binutils**  
+***Install Dependencies***  
 `sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl`  
 `wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 `tar xvf binutils-2.32.tar.bz2`  
