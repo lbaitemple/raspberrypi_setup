@@ -43,7 +43,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 
 Assumed cross-compile environment is AMD64 Ubuntu Linux  
 	  **Binutils**  
-`sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex`  
+`sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl`  
 `wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 `tar xvf binutils-2.32.tar.bz2`  
 `mkdir binutils-obj && cd binutils-obj`  
@@ -55,9 +55,9 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
 `wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 `tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
-`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers \
- --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float \
- --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic \
+`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
+ --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
+ --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
  `make all-gcc -j6`  
  `sudo make install-gcc`  
