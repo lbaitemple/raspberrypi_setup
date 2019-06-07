@@ -48,18 +48,18 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
 `wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 `tar xvf binutils-2.32.tar.bz2`  
 `mkdir binutils-obj && cd binutils-obj`  
-`../binutils-2.32/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --disable-nls --enable-lto`  
-`make -j6 CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model"`  
+`../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
+`make -j6 CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model -march=armv8-a"`  
 `sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
 `wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 `tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
-`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
+`../gcc-9.1.0/configure --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
- --enable-languages=c`  
+ --enable-languages=c -march=armv8-a`  
  `make all-gcc -j6`  
  `sudo make install-gcc`  
  
@@ -71,11 +71,11 @@ We want to use realtime kernel for latency control statistics
     make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  bcmrpi3_defconfig
 Now we have the default bcmrpi3_defconfig kernel configuration, but it is good to check that we're using RT as the kernel setting. Use text editor to confirm compiler setting for real-time rt kernel build, or use menuconfig.
 
-    make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
+    make O=../kernel-out/ menuconfig -j6
 
 Start compile:
 
-    make -j4 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+    make -j6 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
 
 Add QT
 ```
