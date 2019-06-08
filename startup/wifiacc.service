@@ -1,0 +1,13 @@
+[Unit]
+Description=IP_Script
+
+[Service]
+ExecStart=/home/ubuntu/access.sh
+Restart=on-failure
+RestartSec=10
+Type=notify
+
+
+[Install]
+WantedBy=multi-user.target
+
