@@ -44,7 +44,9 @@ formerly called compcache, is a Linux kernel module for creating a compressed bl
 A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
 
 `sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
-`sudo chmod +x /usr/bin/zram.sh`  
+`sudo chmod +x /usr/bin/zram.sh` 
+`sudo nano /usr/bin/zram.sh`
+Change 1024 to 4096
 `sudo nano /etc/rc.local`  
 Find the line that says "exit 0" and add one line above it
 `/usr/bin/zram.sh`
