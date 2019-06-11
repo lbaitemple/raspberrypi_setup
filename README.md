@@ -38,13 +38,28 @@ brcmfmac
 brcmutil
 
 ```
+# Zram,  
+formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
+
+A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
+
+`sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
+`sudo chmod +x /usr/bin/zram.sh`  
+`sudo nano /etc/rc.local`  
+Find the line that says "exit 0" and add one line above it
+`/usr/bin/zram.sh`
+Press control+x  
+Press enter
+Reboot
+
+
 # Kernel Build
 The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want kernel architecture built for the ARCH=arm64 and CROSS_COMPILE=aarch64;
 
 Assumed cross-compile environment is AMD64 Ubuntu Linux  
 	  **Binutils**  
 ***Install Dependencies***  
-`sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl`  
+`sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools`  
 `wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 `tar xvf binutils-2.32.tar.bz2`  
 `mkdir binutils-obj && cd binutils-obj`  
@@ -75,7 +90,7 @@ Now we have the default bcmrpi3_defconfig kernel configuration, but it is good t
 
 Start compile:
 
-    make -j6 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+    make -j5 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
 
 Add QT
 ```
@@ -104,21 +119,9 @@ Login user:ubuntu pw:ubuntu
     Optimized Memcpy/Memset:
     wget https://github.copm/bavison/arm-mem/archive/master.tar.gz
     tar xvf master.tar.gz && cd arm-mem-master
-    make -j4
+    make -j5
     sudo cp -v libarmem-v7l.so /usr/lib
     sudo su
     echo echo "/usr/lib/libarmmem-v7l.so" >> /etc/ld.so.preload
     exit
     
-Zram, formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
-
-A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
-
-`sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
-`sudo chmod +x /usr/bin/zram.sh`  
-`sudo nano /etc/rc.local`  
-Find the line that says "exit 0" and add one line above it
-`/usr/bin/zram.sh`
-Press control+x  
-Press enter
-Reboot
