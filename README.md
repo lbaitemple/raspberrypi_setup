@@ -82,9 +82,11 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
  
 We want to use realtime kernel for latency control statistics
 
-    git clone --depth=1 -b rpi-4.14.y-rt https://github.com/raspberrypi/linux.git
+    git clone --depth=1 -b rpi-4.19.y https://github.com/raspberrypi/linux.git
     mkdir kernel-out
     cd linux
+    wget -c https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/4.19/patch-4.19.50-rt22.patch.xz
+    xzcat patch-4.19.50-rt22.patch.xz | patch -p1
     make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  bcmrpi3_defconfig
 Now we have the default bcmrpi3_defconfig kernel configuration, but it is good to check that we're using RT as the kernel setting. Use text editor to confirm compiler setting for real-time rt kernel build, or use menuconfig.
 
@@ -92,7 +94,7 @@ Now we have the default bcmrpi3_defconfig kernel configuration, but it is good t
 
 Start compile:
 
-    make -j5 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+    make -j6 O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
 
 Add QT
 ```
