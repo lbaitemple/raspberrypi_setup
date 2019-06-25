@@ -3,7 +3,7 @@
 https://downloads.ubiquityrobotics.com/pi.html
 
 
-2. vnc app on MAC/ssh on linux//putty on Win
+2. VNC app on MAC/SSH on Linux//Putty on Win
 https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Mac
 
 a. create wlan
@@ -76,7 +76,7 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
 `../gcc-9.1.0/configure --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
- --enable-languages=c -march=armv8-a`  
+ --enable-languages=c`  
  `make all-gcc -j6`  
  `sudo make install-gcc`  
  
