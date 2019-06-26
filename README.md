@@ -58,12 +58,12 @@ Reboot
 The Rpi doesn't have a real-time clock, and so it has to update it's time/locale everytime it's booted. When it can't do this quickly the OS has trouble assertng security keys, etc...  
 We'll speed this up by setting the timezone manually:
 `sudo nano /usr/bin/setTimezone.sh`  
-Put this in the file:
+Put this in the file:  
 `#!/bin/bash  
 timedatectl set-timezone America/New_York`  
-Now, add this to rc.local so it's run every boot-up
+Now, add this to rc.local so it's run every boot-up  
 `sudo nano /etc/rc.local`  
-Find the line that says "exit 0" and add one line above it
+Find the line that says "exit 0" and add one line above it  
 `/usr/bin/setTimezone.sh`  
 
 # Kernel Build
