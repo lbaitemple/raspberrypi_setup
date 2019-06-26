@@ -84,7 +84,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 `wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 `tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
-`../gcc-9.1.0/configure --target=aarch64-linux-gnu --with-newlib --without-headers
+`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
