@@ -85,11 +85,11 @@ Add2Path: `echo 'export PATH="$PATH:/opt/aarch64/bin"'>>~/.bashrc && source ~/.b
 Download: ~4min: `time wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 Decompress: ~2min: `time tar xf gcc-9.1.0.tar.xz`  
 Framework: `mkdir gcc-out && cd gcc-out`  
-Configure: `../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
+Configure: `time ../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
- Build: ~15min: `make all-gcc CFLAGS="-Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -ftree-vectorize -pipe" -j6`  
+ Build: ~15min: `time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
  Install: `sudo make install-gcc`  
  This is already on path; to check: `echo $PATH`
 We want to use latest rpi-kernel source
