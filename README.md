@@ -88,7 +88,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
- `make all-gcc -j6`  
+ `make all-gcc CFLAGS="-Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe" -j6`  
  `sudo make install-gcc`  
  
 We want to use latest rpi-kernel source
