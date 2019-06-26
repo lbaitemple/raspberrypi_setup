@@ -69,10 +69,10 @@ Find the line that says "exit 0" and add one line above it
 # Kernel Build
 The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want kernel architecture built for the ARCH=arm64 and CROSS_COMPILE=aarch64;
 
-Assumed cross-compile environment is AMD64 Ubuntu Linux  
-	  **Binutils**  
 ***Install Dependencies***  
+
 `sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man`  
+	  **Binutils**  
 `wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 `tar xvf binutils-2.32.tar.bz2`  
 `mkdir binutils-obj && cd binutils-obj`  
