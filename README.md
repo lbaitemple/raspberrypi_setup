@@ -71,7 +71,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 
 ***Install Dependencies***  
 
-`sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man gawk expect`  
+`sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libffi-dev libelf-dev libg09 libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man gawk expect`  
 	  ***Binutils***  
 Download: ~4min: `time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 Decompress: ~1min: `time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
@@ -82,16 +82,16 @@ Install: `time sudo make -j6 install`
 Add2Path: `echo 'export PATH="$PATH:/opt/aarch64/bin"'>>~/.bashrc && source ~/.bashrc
 `  
 	 **GCC**  
-Download: ~5min: `time wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
+Download: ~4min: `time wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 Decompress: ~2min: `time tar xf gcc-9.1.0.tar.xz`  
-`mkdir gcc-out && cd gcc-out`  
-`../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
+Framework: `mkdir gcc-out && cd gcc-out`  
+Configure: `../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
- `make all-gcc CFLAGS="-Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -ftree-vectorize -pipe" -j6`  
- `sudo make install-gcc`  
- 
+ Build: ~15min: `make all-gcc CFLAGS="-Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -ftree-vectorize -pipe" -j6`  
+ Install: `sudo make install-gcc`  
+ This is already on path; to check: `echo $PATH`
 We want to use latest rpi-kernel source
 
     git clone --depth=1 -b rpi-4.19.y https://github.com/raspberrypi/linux.git
