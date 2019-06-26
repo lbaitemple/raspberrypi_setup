@@ -73,17 +73,17 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 
 `sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man gawk expect`  
 	  ***Binutils***  
-Download: ~4min:`time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
-Decompress: ~1min:`time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
-Framework:`mkdir binutils-obj && cd binutils-obj`  
-Configure`../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
-Build: ~4min:`time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
-Install:`time sudo make -j6 install`  
-Add2Path:`echo 'export PATH="$PATH:/opt/aarch64/bin"'>>~/.bashrc && source ~/.bashrc
+Download: ~4min: `time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
+Decompress: ~1min: `time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
+Framework: `mkdir binutils-obj && cd binutils-obj`  
+Configure: `../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
+Build: ~4min: `time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
+Install: `time sudo make -j6 install`  
+Add2Path: `echo 'export PATH="$PATH:/opt/aarch64/bin"'>>~/.bashrc && source ~/.bashrc
 `  
 	 **GCC**  
-`wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
-`tar xf gcc-9.1.0.tar.xz`  
+Download: ~5min: `time wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
+Decompress: ~2min: `time tar xf gcc-9.1.0.tar.xz`  
 `mkdir gcc-out && cd gcc-out`  
 `../gcc-9.1.0/configure --prefix=/opt/aarch64 --target=aarch64-linux-gnu --with-newlib --without-headers
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
