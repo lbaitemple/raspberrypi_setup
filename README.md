@@ -73,12 +73,12 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 
 `sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man gawk expect`  
 	  **Binutils**  
-`wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
-`tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `  
+`time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
+`time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `  
 `mkdir binutils-obj && cd binutils-obj`  
 `../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
 `time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -mlittle-endian -mfloab-abi=hard -pipe"`  
-`sudo make -j6 install`  
+`time sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
 `wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
@@ -88,7 +88,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
  --disable-nls --disable-shared --disable-threads --disable-libssp --disable-decimal-float
  --disable-libquadmath --disable-libvtv --disable-libgomp --disable-libatomic
  --enable-languages=c`  
- `make all-gcc CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model -Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe" -j6`  
+ `make all-gcc CFLAGS="-Ofast -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -ftree-vectorize -pipe" -j6`  
  `sudo make install-gcc`  
  
 We want to use latest rpi-kernel source
