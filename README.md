@@ -77,7 +77,7 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 `tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `  
 `mkdir binutils-obj && cd binutils-obj`  
 `../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
-`make -j6 CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model -march=armv8-a"`  
+`make -j6 CFLAGS="-finline-functions -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -ffast-math -fpeel-loops -fpredictive-commoning -ftree-loop-distribute-patterns -ftree-loop-distribution -ftree-loop-vectorize -ftree-partial-pre -ftree-slp-vectorize -funswitch-loops -fvect-cost-model -march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe"`  
 `sudo make -j6 install`  
 `export PATH=$PATH:/opt/aarch64/bin/`  
 	 **GCC**  
