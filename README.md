@@ -45,8 +45,8 @@ A compressed swap space with zram/zswap also offers advantages for low-end hardw
 
 `sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
 `sudo chmod +x /usr/bin/zram.sh` 
-`sudo nano /usr/bin/zram.sh`
-Change 1024 to 4096
+`sudo nano /usr/bin/zram.sh`  
+Change 1024 to 4096  
 `sudo nano /etc/rc.local`  
 Find the line that says "exit 0" and add one line above it
 `/usr/bin/zram.sh`
