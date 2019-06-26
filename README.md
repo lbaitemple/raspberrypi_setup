@@ -76,6 +76,8 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 Download: ~4min: `time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
 Decompress: ~1min: `time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
 Framework: `mkdir binutils-obj && cd binutils-obj`  
+Environment: `export CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model"`  
+`export CXXFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model"`  
 Configure: `../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
 Build: ~4min: `time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe" CXXFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
 Install: `time sudo make -j6 install`  
