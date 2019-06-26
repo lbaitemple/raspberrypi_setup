@@ -114,7 +114,7 @@ Start compile:
 
 Add QT
 ```
-wget -c http://download.qt.io/official_releases/qt/5.11/5.11.1/qt-opensource-linux-x64-5.11.1.run
+wget -c http://download.qt.io/official_releases/qt/5.13/5.13.0/qt-opensource-linux-x64-5.13.0.run
 ```
 Login user:ubuntu pw:ubuntu
 
