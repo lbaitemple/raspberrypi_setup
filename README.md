@@ -44,7 +44,7 @@ formerly called compcache, is a Linux kernel module for creating a compressed bl
 A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
 
 `sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh`  
-`sudo chmod +x /usr/bin/zram.sh` 
+`sudo chmod +x /usr/bin/zram.sh`  
 `sudo nano /usr/bin/zram.sh`  
 Change 1024 to 4096  
 `sudo nano /etc/rc.local`  
@@ -54,6 +54,17 @@ Press control+x
 Press enter
 Reboot
 
+# RTC Problem
+The Rpi doesn't have a real-time clock, and so it has to update it's time/locale everytime it's booted. When it can't do this quickly the OS has trouble assertng security keys, etc...  
+We'll speed this up by setting the timezone manually:
+`sudo nano /usr/bin/setTimezone.sh`  
+Put this in the file:
+`#!/bin/bash  
+timedatectl set-timezone America/New_York`  
+Now, add this to rc.local so it's run every boot-up
+`sudo nano /etc/rc.local`  
+Find the line that says "exit 0" and add one line above it
+`/usr/bin/setTimezone.sh`  
 
 # Kernel Build
 The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want kernel architecture built for the ARCH=arm64 and CROSS_COMPILE=aarch64;
