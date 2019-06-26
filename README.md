@@ -80,11 +80,13 @@ Assumed cross-compile environment is AMD64 Ubuntu Linux
  `make all-gcc -j6`  
  `sudo make install-gcc`  
  
-We want to use realtime kernel for latency control statistics
+We want to use latest rpi-kernel source
 
     git clone --depth=1 -b rpi-4.19.y https://github.com/raspberrypi/linux.git
     mkdir kernel-out
-    cd linux
+    cd linux  
+Now we patch for rt
+
     wget -c https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/4.19/patch-4.19.50-rt22.patch.xz
     xzcat patch-4.19.50-rt22.patch.xz | patch -p1
     make O=../kernel-out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  bcmrpi3_defconfig
