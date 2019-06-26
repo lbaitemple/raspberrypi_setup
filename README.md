@@ -38,7 +38,7 @@ brcmfmac
 brcmutil
 
 ```
-# Zram,  
+# Zram  
 formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
 
 A compressed swap space with zram/zswap also offers advantages for low-end hardware devices such as embedded devices and netbooks. Such devices usually use flash-based storage, which has limited lifespan due to write amplification, and also use it to provide swap space. The reduction in swap usage as a result of using zram effectively reduces the amount of wear placed on such flash-based storage, resulting in prolonging its usable life. Also, using zram results in a significantly reduced I/O for Linux systems that require swapping.  
@@ -72,14 +72,15 @@ The Rpi has v8 ARM based Broadcom 64-bit SOC, so to get most performance we want
 ***Install Dependencies***  
 
 `sudo apt-get install build-essential libisl-dev libncurses5-dev bc git-core bison flex libmpfr-dev libmpc-dev libgmp-dev texinfo libreadline6-dev curl ccache libelf-dev libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libssl-dev automake autoconf help2man gawk expect`  
-	  **Binutils**  
-`time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
-~1min:`time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
-`mkdir binutils-obj && cd binutils-obj`  
-`../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
-~5min:`time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
-`time sudo make -j6 install`  
-`export PATH=$PATH:/opt/aarch64/bin/`  
+	  ***Binutils***  
+Download: ~4min:`time wget -c https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.bz2`  
+Decompress: ~1min:`time tar xvf binutils-2.32.tar.bz2 #takes_about_one_minute `   
+Framework:`mkdir binutils-obj && cd binutils-obj`  
+Configure`../binutils-2.32/configure --prefix=/opt/aarch64 --disable-nls --enable-lto`  
+Build: ~4min:`time make -j6 CFLAGS="-march=armv8-a -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -Ofast -ftree-vectorize -mlittle-endian -fgcse-after-reload -fvect-cost-model -pipe"`  
+Install:`time sudo make -j6 install`  
+Add2Path:`echo 'export PATH="$PATH:/opt/aarch64/bin"'>>~/.bashrc && source ~/.bashrc
+`  
 	 **GCC**  
 `wget -c https://mirrors-usa.go-parts.com/gcc/releases/gcc-9.1.0/gcc-9.1.0.tar.xz`  
 `tar xf gcc-9.1.0.tar.xz`  
