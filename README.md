@@ -38,6 +38,11 @@ brcmfmac
 brcmutil
 
 ```
+# Rpi-Update
+Raspberry-pi OS builds sometimes include rpi-update, which updates the kernel, firmware, etc.  
+`sudo rpi-update`  
+You must enter 'y' to do the update, the default is no.
+
 # Zram  
 formerly called compcache, is a Linux kernel module for creating a compressed block device in RAM, i.e. a RAM disk, but with on-the-fly "disk" compression. When used for swap, zram (like zswap also) allows Linux to make more efficient use of RAM, since the operating system can then hold more pages of memory in the compressed swap than if the same amount of RAM had been used as application memory or disk cache. This is particularly effective on machines that do not have much memory.
 
