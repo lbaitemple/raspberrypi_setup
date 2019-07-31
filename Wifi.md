@@ -16,3 +16,11 @@ Follow instruction on https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Ma
 sudo apt-get install tightvncserver
 vncserver :1
 ```
+
+
+Setup Pytorch
+```
+sudo apt-get install libopenblas-dev cython libatlas-base-dev m4 libblas-dev python-dev cmake python-yaml
+sudo apt-get install libjpeg-dev -y
+sudo pip install future  Pillow
+```
