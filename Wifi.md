@@ -5,7 +5,8 @@ sudo snap install wifi-ap
 ```
 setup wifi
 ```
-sudo /snap/bin/wifi-ap.config set dhcp.range-start=10.42.0.2
+ sudo /snap/bin/wifi-ap.config set wifi.address=10.42.0.1
+ sudo /snap/bin/wifi-ap.config set dhcp.range-start=10.42.0.2
 sudo /snap/bin/wifi-ap.config set dhcp.range-stop=10.42.0.199
 sudo /snap/bin/wifi-ap.config set wifi.security-passphrase=robotseverywhere
 sudo /snap/bin/wifi-ap.config set wifi.ssid=
