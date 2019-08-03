@@ -3,6 +3,9 @@ sudo apt update
 sudo apt install snapd
 sudo snap install wifi-ap
 ```
+removed the line /usr/lib/arm-linux-gnueabihf/libarmmem.so from /etc/ld.so.preload, then no ERROR MESSAGE gone.
+
+
 setup wifi
 ```
  sudo /snap/bin/wifi-ap.config set wifi.address=10.42.0.1
