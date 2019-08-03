@@ -35,7 +35,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local -D OPEN
 make -j4
 sudo make install
 sudo ldconfig
-export PYTHONPATH=/usr/local/python/cv2/python-2.7
+echo "export PYTHONPATH=/usr/local/python/cv2/python-2.7" >> ~/.bashrc
 ```
 
 Setup Pytorch
