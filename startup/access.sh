@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #acc=`ifconfig  | grep wlan0 | cut -d':' -f 6-7 | sed s/://`
 acc=`ip addr show $(awk 'NR==3{print $1}' /proc/net/wireless | tr -d :) | awk '/ether/{print $2}' | cut -d':' -f 5-7 | sed s/:// `
