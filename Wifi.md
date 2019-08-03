@@ -40,9 +40,9 @@ export PYTHONPATH=/usr/local/python/cv2/python-2.7
 
 Setup Pytorch
 ```
-sudo apt-get install libopenblas-dev cython libatlas-base-dev m4 libblas-dev python-dev cmake python-yaml
+sudo apt-get install libopenblas-dev cython libatlas-base-dev m4 libblas-dev python-dev cmake python-yaml -y
 sudo apt-get install libjpeg-dev -y
-sudo apt-get install python-matplotlib
-sudo apt-get install python-skimage
+sudo apt-get install python-matplotlib -y
+sudo apt-get install python-skimage -y
 sudo pip install future  Pillow numpy
 ```
