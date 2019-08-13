@@ -14,6 +14,8 @@ sudo /snap/bin/wifi-ap.config set dhcp.range-stop=10.42.0.199
 sudo /snap/bin/wifi-ap.config set wifi.security-passphrase=robotseverywhere
 sudo /snap/bin/wifi-ap.config set wifi.ssid=
 ```
+
+
 Follow instruction on https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Mac
 
 ```
