@@ -1,5 +1,6 @@
 #### An easy way to setup wifi to Temple after you get a connection
 ```
+wget https://raw.githubusercontent.com/lbaitemple/raspberrypi_setup/master/fresh/setupwifi.py
 python3 ./setupwifi.py
 ```
 
