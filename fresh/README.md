@@ -1,9 +1,9 @@
-####
+#### An easy way to setup wifi to Temple after you get a connection
 ```
 python3 ./setupwifi.py
 ```
 
-
+### Old way - a little hard process
 ### get hash
 ```
 echo -n [password] | iconv -t UTF-16LE | openssl md4
