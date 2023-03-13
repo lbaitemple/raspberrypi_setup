@@ -1,6 +1,6 @@
 ####
 ```
-python3 wifi.py
+python3 ./setupwifi.py
 ```
 
 
